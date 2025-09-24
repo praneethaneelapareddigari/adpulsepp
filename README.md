@@ -7,7 +7,7 @@ Tech Stack: **Python**, **FastAPI**, **PostgreSQL**, **Docker**, **AWS Lambda/EC
 
 ---
 
-## ✨ Features
+## Features
 - **FastAPI ingestion & reporting** with pydantic validation and bulk inserts
 - **PostgreSQL** schema tuned with **b-tree + GIN** indexes for <200 ms median report latency on realistic volumes
 - **Event model**: `impression`, `click`, `conversion`, with `cost`/`revenue` and arbitrary JSON `metadata`
@@ -19,7 +19,7 @@ Tech Stack: **Python**, **FastAPI**, **PostgreSQL**, **Docker**, **AWS Lambda/EC
 
 ---
 
-## 🧭 Architecture Flow
+## Architecture Flow
 
 ![Architecture](screenshots/01_architecture.png)
 
@@ -31,7 +31,7 @@ Tech Stack: **Python**, **FastAPI**, **PostgreSQL**, **Docker**, **AWS Lambda/EC
 
 ---
 
-## 🗂 Repository Structure
+## Repository Structure
 
 ```
 adpulsepp/
@@ -64,7 +64,7 @@ adpulsepp/
 
 ---
 
-## 🚀 Quick Start (Local)
+## Quick Start (Local)
 
 **Prereqs:** Docker, Docker Compose
 
@@ -94,7 +94,7 @@ curl "http://localhost:8080/report?campaign_id=CAMP-123&start=-1h"
 
 ---
 
-## 📦 Docker Services
+## Docker Services
 
 - **app**: `uvicorn` FastAPI service on :8080
 - **db**: PostgreSQL 15 on :5432 with `adpulse` database
@@ -104,7 +104,7 @@ curl "http://localhost:8080/report?campaign_id=CAMP-123&start=-1h"
 
 ---
 
-## 🧪 Testing & CI
+## Testing & CI
 
 ```bash
 cd backend
@@ -117,7 +117,7 @@ CI runs: `pytest`, `ruff` lint, builds the image, and (optionally) pushes to the
 
 ---
 
-## ☁️ AWS Deployment Hints
+## AWS Deployment Hints
 
 - **Lambda ingestion**: Deploy `infra/lambda/template.yaml` via AWS SAM. Configure **SQS** as event source for bursty traffic.
 - **ECS**: Use `infra/ecs/task-def.json` as a starting point. Point it at your built container, attach an ALB, and set env vars.
@@ -125,7 +125,7 @@ CI runs: `pytest`, `ruff` lint, builds the image, and (optionally) pushes to the
 
 ---
 
-## 📊 Grafana
+## Grafana
 
 Import `infra/grafana/dashboards/adpulse_overview.json`. Point Prometheus (or app metrics exporter) or Postgres data-source according to your setup.
 
@@ -137,7 +137,7 @@ Import `infra/grafana/dashboards/adpulse_overview.json`. Point Prometheus (or ap
 
 ---
 
-## 🔒 Notes on Accuracy & Integrity
+## Notes on Accuracy & Integrity
 - CI enforces tests on ingestion & reporting paths; sample data aims for **99.9% reporting accuracy** when event → aggregate consistency is maintained.
 - For 150K+ EPS production targets, deploy horizontally (ECS with EC2/ARM nodes), enable PG partitioning + connection pooling (pgBouncer) and consider **logical replication** for read-scaled replicas.
 
