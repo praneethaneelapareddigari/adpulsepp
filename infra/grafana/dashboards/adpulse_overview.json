@@ -1,0 +1,26 @@
+{
+  "title": "AdPulse++ Overview",
+  "timezone": "browser",
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Latency p95 (ms)",
+      "id": 1,
+      "datasource": null
+    },
+    {
+      "type": "graph",
+      "title": "Events per second",
+      "id": 2,
+      "datasource": null
+    },
+    {
+      "type": "graph",
+      "title": "Error rate (%)",
+      "id": 3,
+      "datasource": null
+    }
+  ],
+  "schemaVersion": 36,
+  "version": 1
+}

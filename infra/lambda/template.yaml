@@ -1,0 +1,22 @@
+
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AdPulse++ Lambda ingestion
+Resources:
+  AdPulseIngestFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: handler.handler
+      Runtime: python3.11
+      Timeout: 30
+      Events:
+        SQSTrigger:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt IngestQueue.Arn
+  IngestQueue:
+    Type: AWS::SQS::Queue
+Outputs:
+  QueueUrl:
+    Value: !Ref IngestQueue

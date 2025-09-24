@@ -1,0 +1,20 @@
+
+{
+  "family": "adpulsepp-api",
+  "networkMode": "awsvpc",
+  "cpu": "512",
+  "memory": "1024",
+  "requiresCompatibilities": ["FARGATE"],
+  "containerDefinitions": [{
+    "name": "api",
+    "image": "YOUR_ECR_REPO_URI:latest",
+    "portMappings": [{"containerPort": 8080, "protocol": "tcp"}],
+    "environment": [
+      {"name":"DB_HOST","value":"YOUR_RDS_ENDPOINT"},
+      {"name":"DB_USER","value":"adpulse"},
+      {"name":"DB_PASSWORD","value":"***"},
+      {"name":"DB_NAME","value":"adpulse"}
+    ],
+    "essential": true
+  }]
+}
