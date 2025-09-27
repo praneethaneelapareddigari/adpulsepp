@@ -1,0 +1,15 @@
+apiVersion: 1
+datasources:
+  - name: Postgres
+    type: postgres
+    access: proxy
+    url: db:5432
+    user: adpulse
+    database: adpulse
+    basicAuth: false
+    isDefault: true
+    secureJsonData:
+      password: adpulse
+    jsonData:
+      sslmode: disable
+      postgresVersion: 1500
